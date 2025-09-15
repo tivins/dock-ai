@@ -1,0 +1,15 @@
+services:
+
+  python:
+    container_name: dock_ai
+    build: ./docker/python
+    restart: always
+    volumes:
+      - ./app:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all # `count: 1` or `count: all` for all GPUs
+              capabilities: [ gpu ]
